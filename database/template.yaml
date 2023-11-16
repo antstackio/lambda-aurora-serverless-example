@@ -35,12 +35,26 @@ Resources:
         PasswordLength: 30
         ExcludeCharacters: '"@/\'
   # Parameter store to store DB ARN
-  MySecretParameter:
+  SecretArnParameter:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: /serverlessDB/arn
+      Name: /serverlessDB/secretsArn
       Type: String
       Value: !Ref DBSecret
+  # Parameter to store DB cluster ARN
+  ClusterArnParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /serverlessDB/dbClusterArn
+      Type: String
+      Value: !Sub "arn:aws:rds:${AWS::Region}:${AWS::AccountId}:cluster:${DBClusterName}"
+  # Parameter to store DB Name
+  DBNameParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /serverlessDB/dbName
+      Type: String
+      Value: !Ref DatabaseName
   # Aurora Serverless DB Cluster with Data API
   AuroraCluster:
     Type: "AWS::RDS::DBCluster"
