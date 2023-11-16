@@ -1,0 +1,10 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "lambda-aurora-serverless-example"
+resolve_s3 = true
+s3_prefix = "lambda-aurora-serverless-example"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "DBClusterName=\"aurora-test-cluster\" DatabaseName=\"aurora_test_db\" DBAdminUserName=\"admin_user\""
+image_repositories = []
